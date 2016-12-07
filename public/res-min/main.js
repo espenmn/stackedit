@@ -27478,11 +27478,11 @@ this.DIFF_EQUAL = DIFF_EQUAL, define("diff_match_patch_uncompressed", function(e
   return void 0 !== i && (n.blogUrl = t.checkUrl(i)), n.postId = t.getInputTextValue("#input-publish-postid"), 
   e.isPropagationStopped() ? void 0 : n;
  }, r;
-}), define("providers/bloggerPageProvider", [ "underscore", "utils", "classes/Provider", "helpers/googleHelper" ], function(e, t, n, i) {
+}), define("providers/ploneProvider", [ "underscore", "utils", "classes/Provider", "helpers/ploneHelper" ], function(e, t, n, i) {
  var r = new n("plonepage", "plone Page");
  return r.defaultPublishFormat = "html", r.publishPreferencesInputIds = [ "plone-url" ], 
  r.getPublishLocationLink = function(e) {
-  return [ "https://www.plone.com/plone.g?blogID=", e.blogId, "#editor/target=post;postID=", e.postId ].join("");
+  return [ "http://www.plone.com/", e.blogId, "#editor/target=post;postID=", e.postId ].join("");
  }, r.publish = function(t, n, r, o, a) {
   var s = t.labelList || [];
   n && void 0 !== n.tags && (s = n.tags), e.isString(s) && (s = e.compact(s.split(/[\s,]/)));
