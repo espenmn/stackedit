@@ -17012,7 +17012,7 @@ function() {
     "-.": [ 3, 1, 1, 1 ],
     "-..": [ 3, 1, 1, 1, 1, 1 ],
     ". ": [ 1, 3 ],
-   $"- ": [ 4, 3 ],
+    "- ": [ 4, 3 ],
     "--": [ 8, 3 ],
     "- .": [ 4, 3, 1, 3 ],
     "--.": [ 8, 3, 1, 3 ],
@@ -27479,7 +27479,24 @@ this.DIFF_EQUAL = DIFF_EQUAL, define("diff_match_patch_uncompressed", function(e
   e.isPropagationStopped() ? void 0 : n;
  }, r;
 }), define("providers/bloggerPageProvider", [ "underscore", "utils", "classes/Provider", "helpers/googleHelper" ], function(e, t, n, i) {
- var r = new n("bloggerpage", "Blogger Page");
+ var r = new n("plonepage", "plone Page");
+ return r.defaultPublishFormat = "html", r.publishPreferencesInputIds = [ "plone-url" ], 
+ r.getPublishLocationLink = function(e) {
+  return [ "https://www.plone.com/plone.g?blogID=", e.blogId, "#editor/target=post;postID=", e.postId ].join("");
+ }, r.publish = function(t, n, r, o, a) {
+  var s = t.labelList || [];
+  n && void 0 !== n.tags && (s = n.tags), e.isString(s) && (s = e.compact(s.split(/[\s,]/)));
+  var l = n && n.published === !1, c = n && n.date;
+  i.uploadplone(t.blogUrl, t.blogId, t.postId, s, l, c, r, o, function(e, n, i) {
+   return e ? void a(e) : (t.blogId = n, t.postId = i, void a());
+  });
+ }, r.newPublishAttributes = function(e) {
+  var n = {}, i = t.getInputTextValue("#input-publish-plone-url", e);
+  return void 0 !== i && (n.blogUrl = t.checkUrl(i)), n.postId = t.getInputTextValue("#input-publish-postid"), 
+  e.isPropagationStopped() ? void 0 : n;
+ }, r;
+}), define("providers/plonePageProvider", [ "underscore", "utils", "classes/Provider", "helpers/ploneHelper" ], function(e, t, n, i) {
+var r = new n("bloggerpage", "Blogger Page");
  return r.defaultPublishFormat = "html", r.publishPreferencesInputIds = [ "blogger-url" ], 
  r.getPublishLocationLink = function(e) {
   return [ "https://www.blogger.com/blogger.g?blogID=", e.blogId, "#editor/target=page;pageID=", e.pageId ].join("");
