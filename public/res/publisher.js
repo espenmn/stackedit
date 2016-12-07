@@ -20,6 +20,7 @@ define([
 	"providers/gdrivesecProvider",
 	"providers/gdriveterProvider",
 	"providers/sshProvider",
+	"providers/ploneProvider",
 	"providers/tumblrProvider",
 	"providers/wordpressProvider"
 ], function($, _, constants, utils, storage, settings, eventMgr, fileSystem, fileMgr, MonetizeJS, Provider, AsyncTask) {
