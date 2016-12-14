@@ -21,7 +21,6 @@ app.use(compression());
 
 app.post('/pdfExport', require('./pdf').export);
 app.post('/sshPublish', require('./ssh').publish);
-app.post('/plonePublish', require('./plone').publish);
 app.post('/picasaImportImg', require('./picasa').importImg);
 app.get('/downloadImport', require('./download').importPublic);
 
